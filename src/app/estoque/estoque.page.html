@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button size="medium" (click)="voltarParaHome()">
+        <ion-icon name="arrow-back"></ion-icon>
+        Voltar
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Estoque</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Estoque</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-item class="header-background">
+    <ion-label>Frutaria da Uerr</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="text" placeholder="Nome da Fruta" [(ngModel)]="novaFruta.nome"></ion-input>
+    <ion-input type="number" placeholder="Quantidade em Estoque" [(ngModel)]="novaFruta.quantidade"></ion-input>
+    <ion-input type="number" placeholder="Preço" [(ngModel)]="novaFruta.preco"></ion-input>
+    <ion-button (click)="adicionarFruta()">Adicionar</ion-button>
+  </ion-item>
+
+  <ion-list lines="none">
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4"><b>Nome</b></ion-col>
+          <ion-col size="4"><b>Quantidade</b></ion-col>
+          <ion-col size="4"><b>Preço</b></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  
+    <ion-item *ngFor="let fruta of frutas; let i = index">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">{{ fruta.nome }}</ion-col>
+          <ion-col size="4">{{ fruta.quantidade }}</ion-col>
+          <ion-col size="4">
+            <div class="ion-align-items-center">
+              <span>{{ fruta.preco }}</span>
+              <ion-button (click)="editarFruta(i)" style="margin-left: 10px;">
+                <ion-icon name="pencil-outline"></ion-icon>
+              </ion-button>
+              <ion-button (click)="apagarFruta(i)" style="margin-left: 10px;">
+                <ion-icon name="trash"></ion-icon>
+              </ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  
